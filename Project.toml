@@ -1,0 +1,10 @@
+name = "FlexibilityAnalysis"
+uuid = "a86d3b49-e43c-5f8d-b693-d32ec726be17"
+authors = ["Joshua Pulsipher <pulsipher@wisc.edu>"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

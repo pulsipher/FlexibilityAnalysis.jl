@@ -11,7 +11,7 @@ Formerly known as [FlexJuMP.jl](https://github.com/pulsipher/FlexJuMP.jl).
 Comments, suggestions and improvements are welcome and appreciated.
 
 ## License
-`FlexibilityAnalysis` is licensed under the [MIT "Expat" license](./LICENSE.md).
+`FlexibilityAnalysis` is licensed under the [MIT "Expat" license](./LICENSE).
 
 ## Installation
 `FlexibilityAnalysis.jl` is a registered Julia package and can be installed in the usual manner.

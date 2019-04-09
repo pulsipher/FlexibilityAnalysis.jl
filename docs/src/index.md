@@ -27,12 +27,11 @@ These techniques are described in greater detail in [Background](@ref).
     is underway to allow for quadratic constraints and general nonlinear constraints.  
 
 ## Installation
-FlexibilityAnalysis.jl is not yet a registered Julia package, but can still be installed by providing the package manager
-with the url of the repository instead of the name.
+FlexibilityAnalysis.jl is a registered Julia package and can be installed normally.
 
 ```julia
 using Pkg
-Pkg.add("git://github.com/pulsipher/FlexibilityAnalysis.jl.git")
+Pkg.add("FlexibilityAnalysis")
 ```
 The latest version of FlexibilityAnalysis.jl only supports Julia 1.0 and above. A version is still available for use
 with Julia 0.6 under the julia-0.6 branch in [FlexJuMP.jl](https://github.com/pulsipher/FlexJuMP.jl).

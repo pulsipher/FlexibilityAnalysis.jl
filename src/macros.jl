@@ -122,18 +122,3 @@ macro recoursevariable(m, x)
         end
     end
 end
-
-"""
-    JuMP.constructconstraint!(flex_aff::FlexibilityExpr, sense::Symbol)
-Extends `JuMP.constructconstraint!` for `FlexibilityExpr` types.
-"""
-# function JuMP.constructconstraint!(flex_aff::FlexibilityExpr, sense::Symbol)
-#     if sense == :(<=) || sense == :≤
-#         return FlexibilityConstraint(flex_aff, :(<=))
-#     elseif sense == :(>=) || sense == :≥
-#         return FlexibilityConstraint(flex_aff, :(>=))
-#     elseif sense == :(==)
-#         return FlexibilityConstraint(flex_aff, :(==))
-#     end
-#     error("Unrecognized constraint type $sense")
-# end

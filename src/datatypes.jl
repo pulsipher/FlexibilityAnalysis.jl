@@ -10,8 +10,8 @@ abstract type FlexibilityVariable <: JuMP.AbstractVariableRef end
 A DataType for random variables.
 
 **Fields**
-- `m::Model` Flexibility model.
-- `idx::Int` Index of variable in model.
+- `model::Model` Flexibility model.
+- `index::Int` Index of variable in model.
 """
 struct RandomVariable <: FlexibilityVariable
     model::Model
@@ -23,8 +23,8 @@ end
 A DataType for recourse variables.
 
 **Fields**
-- `m::Model` Flexibility model.
-- `idx::Int` Index of variable in model.
+- `model::Model` Flexibility model.
+- `index::Int` Index of variable in model.
 """
 struct RecourseVariable <: FlexibilityVariable
     model::Model

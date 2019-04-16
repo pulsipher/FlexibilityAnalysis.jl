@@ -44,7 +44,7 @@ module FlexibilityAnalysis
     export @randomvariable, @recoursevariable
 
     # Define the user accessible flexibility operation functions
-    # export setuncertaintyset, findcenteredmean, ismeanfeasible,
+    export setuncertaintyset#, findcenteredmean, ismeanfeasible,
     #        getconfidencelevel, findstochasticflexibility, rankinequalities
 
     # Import all of the datatypes, methods, macros, and definitions
@@ -54,7 +54,7 @@ module FlexibilityAnalysis
     include("variables.jl")
     # include("constraints.jl")
     include("macros.jl")
-    # include("uncertaintyset.jl")
+    include("uncertaintyset.jl")
     # include("mean.jl")
     # include("functions.jl")
     include("operators.jl") # Not sure this is needed anymore

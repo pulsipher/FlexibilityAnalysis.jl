@@ -9,7 +9,7 @@ function Base.show(io::IO, a::FlexibilityExpr)
     end
 
     # Otherwise get data and parse it
-    m = a.vars[1].m
+    m = a.vars[1].model
     flex_data = getflexibilitydata(m)
     vars = a.vars
     names = []
@@ -18,15 +18,31 @@ function Base.show(io::IO, a::FlexibilityExpr)
         push!(coeffs, a.coeffs[i])
         var = vars[i]
         if isa(var, RecourseVariable)
-            push!(names, flex_data.recourse_names[var.idx])
+            push!(names, flex_data.recourse_names[var.index])
         elseif isa(var, RandomVariable)
-            push!(names, flex_data.RVnames[var.idx])
+            push!(names, flex_data.RVnames[var.index])
         end
     end
 
     # Print the expressions to the io
     strs = ["$(JuMP.aff_str(JuMP.REPLMode,coeffs[i], true))*$(names[i])" for i in 1:length(a.vars)]
     print(io,string(join(strs," + "), " + ", JuMP.aff_str(JuMP.REPLMode, a.constant, true)))
+end
+
+
+"""
+    JuMP.constructconstraint!(flex_aff::FlexibilityExpr, sense::Symbol)
+Extends `JuMP.constructconstraint!` for `FlexibilityExpr` types.
+"""
+function JuMP.constructconstraint!(flex_aff::FlexibilityExpr, sense::Symbol)
+    if sense == :(<=) || sense == :≤
+        return FlexibilityConstraint(flex_aff, :(<=))
+    elseif sense == :(>=) || sense == :≥
+        return FlexibilityConstraint(flex_aff, :(>=))
+    elseif sense == :(==)
+        return FlexibilityConstraint(flex_aff, :(==))
+    end
+    error("Unrecognized constraint type $sense")
 end
 
 """
@@ -50,10 +66,10 @@ function JuMP.addconstraint(m::Model, constr::FlexibilityConstraint)
     flex_vars_jump = []
     for var in flex_vars
         if isa(var, RecourseVariable)
-            jump_var = Variable(m, flex_data.recourse_cols[linearindex(var)])
+            jump_var = Variable(m, flex_data.recourse_cols[index(var)])
             push!(flex_vars_jump, jump_var)
         elseif isa(var, RandomVariable)
-            jump_var = Variable(m, flex_data.RVcols[linearindex(var)])
+            jump_var = Variable(m, flex_data.RVcols[index(var)])
             push!(flex_vars_jump, jump_var)
         else
             error("Variable type $(typeof(var)) not recognized for constructing constraint")

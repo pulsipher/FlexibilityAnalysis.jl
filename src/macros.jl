@@ -47,8 +47,8 @@ macro randomvariable(m, x, mean)
         end
 
         variable = gensym()
-        refcall, idxvars, idxsets, idxpairs, condition = JuMP.buildrefsets(x, variable)
-        varname = JuMP.getname(x)
+        refcall, idxvars, idxsets, condition = JuMP._build_ref_sets(x, variable)
+        varname = JuMP._get_name(x)
         escvarname = esc(varname)
 
         varstr = :(string($(string(varname)),"["))
@@ -60,7 +60,7 @@ macro randomvariable(m, x, mean)
         push!(varstr.args,"]")
 
         code = :( $(refcall) = RandomVariable($m, $mean, $varstr ) )
-        looped = JuMP.getloopedcode(variable, code, condition, idxvars, idxsets, idxpairs, :RandomVariable)
+        looped = JuMP._get_looped_code(variable, code, condition, idxvars, idxsets, :RandomVariable, :Auto)
         return quote
             $looped
             $escvarname = $variable
@@ -102,8 +102,8 @@ macro recoursevariable(m, x)
         end
 
         variable = gensym()
-        refcall, idxvars, idxsets, idxpairs, condition = JuMP.buildrefsets(x, variable)
-        varname = JuMP.getname(x)
+        refcall, idxvars, idxsets, condition = JuMP._build_ref_sets(x, variable)
+        varname = JuMP._get_name(x)
         escvarname = esc(varname)
 
         varstr = :(string($(string(varname)),"["))
@@ -115,7 +115,7 @@ macro recoursevariable(m, x)
         push!(varstr.args,"]")
 
         code = :( $(refcall) = RecourseVariable($m, $varstr ) )
-        looped = JuMP.getloopedcode(variable, code, condition, idxvars, idxsets, idxpairs, :RecourseVariable)
+        looped = JuMP._get_looped_code(variable, code, condition, idxvars, idxsets, :RecourseVariable, :Auto)
         return quote
             $looped
             $escvarname = $variable

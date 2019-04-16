@@ -38,8 +38,8 @@ julia> getmean(T[1])
 ```
 """
 function getmean(variable::RandomVariable)
-    flex_data = getflexibilitydata(variable.m)
-    return flex_data.RVmeans[variable.idx]
+    flex_data = getflexibilitydata(variable.model)
+    return flex_data.RVmeans[variable.index]
 end
 
 """
@@ -96,4 +96,32 @@ julia> index(Qc)
 1
 ```
 """
-JuMP.index(v::FlexibilityVariable) = v.idx
+JuMP.index(v::FlexibilityVariable) = v.index
+
+"""
+    JuMP.name(v::RandomVariable)
+Return the name of a random variable this is an extension of `JuMP.name`.
+
+**Arguments**
+- `v::RandomVariable` The random variable, must be a single variable.
+
+```julia
+julia> name(T[1])
+"T[1]"
+```
+"""
+JuMP.name(v::RandomVariable) = getflexibilitydata(v.model).RVnames[v.index]
+
+"""
+    JuMP.name(v::RecourseVariable)
+Return the name of a recourse variable this is an extension of `JuMP.name`.
+
+**Arguments**
+- `v::RecourseVariable` The recourse variable, must be a single variable.
+
+```julia
+julia> name(Qc)
+"Qc"
+```
+"""
+JuMP.name(v::RecourseVariable) = getflexibilitydata(v.model).recourse_names[v.index]

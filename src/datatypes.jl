@@ -2,7 +2,8 @@
     FlexibilityVariable <: JuMP.AbstractJuMPScalar
 An abstract type to define new variable types.
 """
-abstract type FlexibilityVariable <: JuMP.AbstractJuMPScalar end
+# abstract type FlexibilityVariable <: JuMP.AbstractJuMPScalar end
+abstract type FlexibilityVariable <: JuMP.AbstractVariableRef end
 
 """
     RandomVariable <: FlexibilityVariable
@@ -13,8 +14,8 @@ A DataType for random variables.
 - `idx::Int` Index of variable in model.
 """
 struct RandomVariable <: FlexibilityVariable
-    m::Model
-    idx::Int
+    model::Model
+    index::Int
 end
 
 """
@@ -26,8 +27,8 @@ A DataType for recourse variables.
 - `idx::Int` Index of variable in model.
 """
 struct RecourseVariable <: FlexibilityVariable
-    m::Model
-    idx::Int
+    model::Model
+    index::Int
 end
 
 """

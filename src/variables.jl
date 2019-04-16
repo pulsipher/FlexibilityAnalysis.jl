@@ -17,8 +17,8 @@ function RandomVariable(m::Model, mean::Number, name::AbstractString)
     push!(flex_data.RVnames, name)
 
     # Add an associated anonymous variable directly to the model and save its index
-    @variable(m)
-    index = length(m.colVal)
+    @variable(m, base_name = name)
+    index = num_variables(m)
     push!(flex_data.RVcols, index)
 
     return RandomVariable(m, flex_data.numRVs)
@@ -59,8 +59,8 @@ function RecourseVariable(m::Model, name::AbstractString)
     push!(flex_data.recourse_names, name)
 
     # Add an associated anonymous variable directly to the model and save its index
-    @variable(m)
-    index = length(m.colVal)
+    @variable(m, base_name = name)
+    index = num_variables(m)
     push!(flex_data.recourse_cols, index)
 
     return RecourseVariable(m, flex_data.num_recourse_vars)
@@ -82,18 +82,18 @@ julia> getvalue(T)
  319.0
 ```
 """
-JuMP.getvalue(v::FlexibilityVariable) = getvalue(Variable(v.m, v.idx))
+# JuMP.getvalue(v::FlexibilityVariable) = getvalue(Variable(v.m, v.idx))
 
 """
-    JuMP.linearindex(v::FlexibilityVariable)
-Return the index of the a flexibility variable this is an extension of `JuMP.linearindex`.
+    JuMP.index(v::FlexibilityVariable)
+Return the index of the a flexibility variable this is an extension of `JuMP.index`.
 
 **Arguments**
 - `v::FlexibilityVariable` The flexibility variable, must be a single variable.
 
 ```julia
-julia> linearindex(Qc)
+julia> index(Qc)
 1
 ```
 """
-JuMP.linearindex(v::FlexibilityVariable) = v.idx
+JuMP.index(v::FlexibilityVariable) = v.idx

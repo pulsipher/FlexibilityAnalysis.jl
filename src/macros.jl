@@ -1,7 +1,5 @@
 using Base.Meta, Pkg
-if Pkg.installed()["JuMP"] >= v"0.18.4"
-    import JuMP.undef
-end
+import JuMP.undef
 
 """
     @randomvariable(m, x, mean)
@@ -129,13 +127,13 @@ end
     JuMP.constructconstraint!(flex_aff::FlexibilityExpr, sense::Symbol)
 Extends `JuMP.constructconstraint!` for `FlexibilityExpr` types.
 """
-function JuMP.constructconstraint!(flex_aff::FlexibilityExpr, sense::Symbol)
-    if sense == :(<=) || sense == :≤
-        return FlexibilityConstraint(flex_aff, :(<=))
-    elseif sense == :(>=) || sense == :≥
-        return FlexibilityConstraint(flex_aff, :(>=))
-    elseif sense == :(==)
-        return FlexibilityConstraint(flex_aff, :(==))
-    end
-    error("Unrecognized constraint type $sense")
-end
+# function JuMP.constructconstraint!(flex_aff::FlexibilityExpr, sense::Symbol)
+#     if sense == :(<=) || sense == :≤
+#         return FlexibilityConstraint(flex_aff, :(<=))
+#     elseif sense == :(>=) || sense == :≥
+#         return FlexibilityConstraint(flex_aff, :(>=))
+#     elseif sense == :(==)
+#         return FlexibilityConstraint(flex_aff, :(==))
+#     end
+#     error("Unrecognized constraint type $sense")
+# end

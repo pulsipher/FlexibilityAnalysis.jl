@@ -33,22 +33,30 @@ module FlexibilityAnalysis
     using LinearAlgebra
     using Random
     using Ipopt, Clp # Default solver
+    using MathOptInterface
+    const MOI = MathOptInterface
 
-    # Define functions/macros to be readily accesible to the user
-    export FlexibilityModel, @randomvariable, @recoursevariable, getflexibilitydata, setcovariance, getcovariance,
-           getactiveconstraints, setuncertaintyset, getflexibilityindex, findcenteredmean, ismeanfeasible,
-           getconfidencelevel, findstochasticflexibility, rankinequalities, getmean, setmean, getsolutiontime
+    # Define the user accessible model data functions
+    export FlexibilityModel, getflexibilitydata, setcovariance, getcovariance,
+           getmean, setmean, getactiveconstraints, getflexibilityindex, getsolutiontime
+
+    # Define the user accessible macros
+    export @randomvariable, @recoursevariable
+
+    # Define the user accessible flexibility operation functions
+    # export setuncertaintyset, findcenteredmean, ismeanfeasible,
+    #        getconfidencelevel, findstochasticflexibility, rankinequalities
 
     # Import all of the datatypes, methods, macros, and definitions
     include("datatypes.jl")
     include("model.jl")
-    include("solve.jl")
+    # include("solve.jl")
     include("variables.jl")
-    include("constraints.jl")
+    # include("constraints.jl")
     include("macros.jl")
-    include("uncertaintyset.jl")
-    include("mean.jl")
-    include("functions.jl")
-    include("operators.jl")
+    # include("uncertaintyset.jl")
+    # include("mean.jl")
+    # include("functions.jl")
+    # include("operators.jl")
 
 end

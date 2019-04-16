@@ -144,6 +144,23 @@ mutable struct FlexibilityData
     flexibility_index::Union{Nothing, Number}
     active_constraints::Vector{Int}
     solution_time::Union{Nothing, Number}
+
+    # Default constructor
+    function FlexibilityData()
+        new(FlexibilityConstraint[],
+            0,
+            Float64[],
+            String[],
+            Int[],
+            0,
+            String[],
+            Int[],
+            EllipsoidalSet(),
+            Matrix(undef, 0, 0),
+            nothing,
+            Int[],
+            nothing)
+    end
 end
 
 # Set methods to extract covariance information if appropriate

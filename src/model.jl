@@ -1,25 +1,27 @@
 """
-    FlexibilityModel(; [solver = JuMP.UnsetSolver()])
+    FlexibilityModel(args...; [kwargs...])
 Return a flexibility model object which extends a JuMP model object to contain [`FlexibilityData`](@ref) and implement
 a custom solvehook. An appropriate solver should be specified in order solve the flexibility index problem. A
 solver capable of handling MIQCPs is required for ellipsoidal and 2-norm uncertainty sets otherwise a MILP solver
-can be used. This model is solved with `solve`, see [`solvehook`](@ref) for documention on the accepted keyword arguments.
+can be used. This model is solved with `optimize!`, see [`solvehook`](@ref) for documention on the accepted keyword arguments.
 
 **Arguments**
-- `solver = JuMP.UnsetSolver()` The solver, should use an MIQCP, MINLP, or MILP solver as appropriate.
+- Refer to the method `JuMP.Model`
 
 ```julia
-julia> m = FlexibilityModel(solver = GurobiSolver())
+julia> m = FlexibilityModel(with_optimizer(Gurobi.Optimizer))
+A JuMP Model
 Feasibility problem with:
- * 0 linear constraints
- * 0 variables
-Solver is Gurobi
+Variables: 0
+Model mode: AUTOMATIC
+CachingOptimizer state: EMPTY_OPTIMIZER
+Solver name: Gurobi
 ```
 """
-function FlexibilityModel(;solver = JuMP.UnsetSolver())
-    m = Model(solver = solver)
-    m.solvehook = solvehook     #solvehook is defined in solve.jl
-    m.ext[:FlexData] = FlexibilityData(FlexibilityConstraint[], 0, Float64[], String[], Int[], 0, String[], Int[], EllipsoidalSet(), Matrix(undef, 0, 0), nothing, Int[], nothing)
+function FlexibilityModel(args...; kwargs...)
+    m = Model(args...; kwargs...)
+    # m.optimize_hook = solvehook     #solvehook is defined in solve.jl
+    m.ext[:FlexData] = FlexibilityData()
     return m
 end
 

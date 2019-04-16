@@ -57,6 +57,6 @@ module FlexibilityAnalysis
     # include("uncertaintyset.jl")
     # include("mean.jl")
     # include("functions.jl")
-    # include("operators.jl")
+    include("operators.jl") # Not sure this is needed anymore
 
 end

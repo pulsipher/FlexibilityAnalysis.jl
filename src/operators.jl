@@ -9,15 +9,15 @@ import Base: +, -, /, *, <=, >=
 for op in (:+, :-, :*)
     @eval begin
         ($op)(lhs::Number, rhs::FlexibilityVariable) = ($op)(lhs, FlexibilityExpr([rhs],[1.0],0.0))
-        ($op)(lhs::Variable, rhs::FlexibilityVariable) = ($op)(convert(AffExpr,lhs),rhs)
-        ($op)(lhs::Variable, rhs::FlexibilityExpr) = ($op)(convert(AffExpr,lhs),rhs)
+        ($op)(lhs::AbstractVariableRef, rhs::FlexibilityVariable) = ($op)(convert(AffExpr,lhs),rhs)
+        ($op)(lhs::AbstractVariableRef, rhs::FlexibilityExpr) = ($op)(convert(AffExpr,lhs),rhs)
     end
     if op == :-
-        @eval ($op)(lhs::FlexibilityExpr, rhs::Variable) = (+)(lhs,-rhs)
-        @eval ($op)(lhs::FlexibilityVariable, rhs::Union{Variable,Number}) = (+)(lhs,-rhs)
+        @eval ($op)(lhs::FlexibilityExpr, rhs::AbstractVariableRef) = (+)(lhs,-rhs)
+        @eval ($op)(lhs::FlexibilityVariable, rhs::Union{AbstractVariableRef,Number}) = (+)(lhs,-rhs)
     else
-        @eval ($op)(lhs::FlexibilityVariable, rhs::Union{Variable,Number}) = ($op)(rhs,lhs)
-        @eval ($op)(lhs::FlexibilityExpr, rhs::Variable) = ($op)(rhs,lhs)
+        @eval ($op)(lhs::FlexibilityVariable, rhs::Union{AbstractVariableRef,Number}) = ($op)(rhs,lhs)
+        @eval ($op)(lhs::FlexibilityExpr, rhs::AbstractVariableRef) = ($op)(rhs,lhs)
     end
 end
 

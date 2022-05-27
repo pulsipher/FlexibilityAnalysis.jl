@@ -4,7 +4,7 @@ A JuMP extension for analyzing and quantifying the flexibility of complex system
 Formerly known as [FlexJuMP.jl](https://github.com/pulsipher/FlexJuMP.jl).
 
 ## Status
-`FlexibilityAnalysis.jl` is long out of date and is currently without a developer. It last worked with Julia `v1.1` and JuMP `v0.18` (with the old MathProgBase solver package versions). Please respond to [this issue](https://github.com/pulsipher/FlexibilityAnalysis.jl/issues/2) if you would like to help bring this up-to-date.
+`FlexibilityAnalysis.jl` is long out of date and is currently without a developer. It last worked with Julia `v1.1` and JuMP `v0.18` using Gurobi.jl 'v.6' (wrapping Gurobi `0.7.x`). Please respond to [this issue](https://github.com/pulsipher/FlexibilityAnalysis.jl/issues/2) if you would like to help bring this up-to-date.
 
 | **Documentation**                                                               | **Build Status**                                                                                |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
@@ -32,17 +32,7 @@ a quick start guide, an overview necessary background material, a detailed user 
 an API library.
 
 ## Project Status
-
-The package is tested against Julia `1.0`, `1.1`, and nightly on Linux, macOS, and Windows. Julia `0.6`
-is not supported by `FlexibilityAnalysis`, but the `julia-0.6` branch on [FlexJuMP.jl](https://github.com/pulsipher/FlexJuMP.jl)
-can be used.
+The package was tested (in 2019) against Julia `1.0`, `1.1`, and nightly on Linux, macOS, and Windows.
 
 ## Contributing
-`FlexibilityAnalysis` is being actively developed and suggestions or other forms of contribution are encouraged.
-There are many ways to contribute to this package:
-
-- Suggest new/improved functionality
-- Report an issue if you encounter some odd behavior, or if you have suggestions to improve the package.
-- Contribute with code addressing some open issues, that add new functionality or that improve the performance.
-- When contributing with code, add docstrings and comments, so others may understand the methods implemented.
-- Contribute by updating and improving the documentation.
+`FlexibilityAnalysis` needs a newer developer, see [this issue](https://github.com/pulsipher/FlexibilityAnalysis.jl/issues/2) to learn more.

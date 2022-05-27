@@ -4,7 +4,7 @@ A JuMP extension for analyzing and quantifying the flexibility of complex system
 Formerly known as [FlexJuMP.jl](https://github.com/pulsipher/FlexJuMP.jl).
 
 ## Status
-`FlexibilityAnalysis.jl` is long out of date and is currently without a developer. It last worked with Julia `v0.6` and JuMP `v0.18` (with the old MathProgBase solver package versions). Please respond to [this issue](https://github.com/pulsipher/FlexibilityAnalysis.jl/issues/2) if you would like to help bring this up-to-date.
+`FlexibilityAnalysis.jl` is long out of date and is currently without a developer. It last worked with Julia `v1.1` and JuMP `v0.18` (with the old MathProgBase solver package versions). Please respond to [this issue](https://github.com/pulsipher/FlexibilityAnalysis.jl/issues/2) if you would like to help bring this up-to-date.
 
 | **Documentation**                                                               | **Build Status**                                                                                |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
